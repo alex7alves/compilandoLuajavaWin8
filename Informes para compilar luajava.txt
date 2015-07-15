@@ -1,0 +1,47 @@
+como compilar luajava para windows 8 64 bits. 
+
+Primeiro baixe o mingw 64 bits :
+Você pode baixá-lo daqui:
+http://mingw-w64.org/doku.php/download/mingw-builds
+Faça um copia do mingw32-make.exe e o renomeie para make e deixe na mesma pasta(do bin do mingw)
+Coloque-o no path.
+
+Descompacte lua524
+Compile lua52 a partir dos mekafiles( da pasta em anexo do lua524 já compilado) - copie os mekafiles para a pasta descompactada.
+Via cmd  vá até a pasta( entre na pasta) e faça make mingw.
+copie lua.exe, luac.exe e lua52.dll para a pasta bin do mingw64
+coloque o lua52 no path( caminho da pasta em que o lua52.dll está)
+
+Descompacte lpeglabel 
+Compilando lepeglabel:
+Abra o o comd vá até a pasta e faça :
+gcc -c *.c -I(local da pasta lua52) e depois:
+gcc -shared *.o  -o lpeglabel.dll -llua52
+ -L(local da pasta lua52)
+copie lpeglabel.dll para a pasta bin do mingw64.
+
+compilanddo luajava:
+Descompacte a pasta
+Copie(substitua) os makefiles e os config( em anexo na pasta luajava) para a pasta descompactada, vá na pasta( via cmd) do primeiro makefile
+(diretório de cima) e  faça make. 
+Leia o manual para ver onde coloca a dll gerada. 
+para entrar no console :
+Vá na pasta do luajava e faça: 
+java -cp luajava-1.1.jar org.keplerpro
+ject.luajava.Console
+
+Para compilar um programa luajava faça :
+javac -sourcepath src\java Hello.java -Xlint  -- onde hello.java é um programa luaajava que deve  está na pasta luajava.
+
+
+
+Pra rodar eu fiz assim:
+java -cp luajava-1.1.jar;. Hello
+
+Ou seja, eu disse que o classpath incluía o "luajava-1.1.jar" e o
+diretório atual ".".
+O ";" é o separador de caminhos no windows.
+
+
+Fim.
+
